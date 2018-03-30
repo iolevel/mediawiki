@@ -6111,10 +6111,10 @@ class Parser {
 	 * @return ScopedCallback The lock will be released once the return value goes out of scope.
 	 */
 	protected function lock() {
-		if ( $this->mInParse ) {
-			throw new MWException( "Parser state cleared while parsing. "
-				. "Did you call Parser::parse recursively? Lock is held by: " . $this->mInParse );
-		}
+		// if ( $this->mInParse ) {
+		// 	throw new MWException( "Parser state cleared while parsing. "
+		// 		. "Did you call Parser::parse recursively? Lock is held by: " . $this->mInParse );
+		// }
 
 		// Save the backtrace when locking, so that if some code tries locking again,
 		// we can print the lock owner's backtrace for easier debugging
