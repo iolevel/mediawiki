@@ -77,3 +77,8 @@ Thumbs.db
 /.htpasswd
 /tests/phan/issues
 *.rej
+
+# Visual Studio output directories
+bin
+bin_*
+obj

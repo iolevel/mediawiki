@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFrameworks>netcoreapp2.0;net46</TargetFrameworks>
+    <AssemblyName>mediawiki</AssemblyName>
+    <NoWarn>PHPX0125,PHP3012</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <OutDir Condition=" '$(TargetFramework)' == 'net46' ">bin</OutDir><!-- ASP.Net loads DLLs always from there -->
+    <OutDir Condition=" '$(TargetFramework)' != 'net46' ">bin_$(TargetFramework)</OutDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile
+      Include="**/*.php"
+      Exclude="maintenance/**;tests/**;vendor/**/tests/**;vendor/**/test/**;vendor/**/Test/**" />
+    <Compile Remove="includes/debug/logger/monolog/**" />
+    <Compile Remove="skins/Vector/vendor/composer/installers/**" />
+    <Compile Remove="vendor/wikimedia/composer-merge-plugin/**" />
+    <Compile Remove="vendor/liuggio/statsd-php-client/src/Liuggio/StatsdClient/Monolog/**" />
+    <Compile Remove="vendor/liuggio/statsd-php-client/src/Liuggio/StatsdClient/Monolog/**" />
+    <Compile Remove="vendor/pear/pear-core-minimal/src/System.php" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Peachpie.Compiler.Tools" Version="0.9.0-CI00853" />
+    <PackageReference Include="Peachpie.NET.Sdk" Version="0.9.0-CI00853" PrivateAssets="Build" />
+    <PackageReference Include="Peachpie.Library.Graphics" Version="0.9.0-CI00853" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net46' ">
+    <PackageReference Include="Peachpie.RequestHandler" Version="0.9.0-CI00853" />
+  </ItemGroup>
+</Project>
