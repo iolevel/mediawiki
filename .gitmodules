@@ -1,6 +1,6 @@
 [submodule "vendor"]
 	path = vendor
-	url = https://github.com/roberthusak/mediawiki-vendor.git
+	url = https://github.com/iolevel/mediawiki-vendor.git
 	branch = master
 [submodule "skins/Vector"]
 	path = skins/Vector
