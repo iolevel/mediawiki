@@ -1,15 +1,14 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Peachpie.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFrameworks>netcoreapp2.0;net46</TargetFrameworks>
-    <AssemblyName>mediawiki</AssemblyName>
-    <NoWarn>PHPX0125,PHP3012</NoWarn>
+    <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
+    <NoWarn>PHP0125,PHP5011</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup>
-    <OutDir Condition=" '$(TargetFramework)' == 'net46' ">bin</OutDir><!-- ASP.Net loads DLLs always from there -->
-    <OutDir Condition=" '$(TargetFramework)' != 'net46' ">bin_$(TargetFramework)</OutDir>
+    <OutDir Condition=" '$(TargetFramework)' == 'net461' ">bin</OutDir><!-- ASP.Net loads DLLs always from there -->
+    <OutDir Condition=" '$(TargetFramework)' != 'net461' ">bin_$(TargetFramework)</OutDir>
   </PropertyGroup>
 
   <ItemGroup>
@@ -24,13 +23,8 @@
     <Compile Remove="vendor/pear/pear-core-minimal/src/System.php" />
   </ItemGroup>
 
-  <ItemGroup>
-    <DotNetCliToolReference Include="Peachpie.Compiler.Tools" Version="0.9.0-CI00853" />
-    <PackageReference Include="Peachpie.NET.Sdk" Version="0.9.0-CI00853" PrivateAssets="Build" />
-    <PackageReference Include="Peachpie.Library.Graphics" Version="0.9.0-CI00853" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net46' ">
-    <PackageReference Include="Peachpie.RequestHandler" Version="0.9.0-CI00853" />
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
+    <!-- Peachpie.RequestHandler assembly is used in web.config to handle requests on IIS -->
+    <PackageReference Include="Peachpie.RequestHandler" Version="$(PeachpieVersion)" />
   </ItemGroup>
 </Project>
