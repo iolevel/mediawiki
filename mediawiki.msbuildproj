@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <Compile
-      Include="**/*.php"
+      Include="**/*.php;**/*.inc"
       Exclude="maintenance/**;tests/**;vendor/**/tests/**;vendor/**/test/**;vendor/**/Test/**" />
     <Compile Remove="includes/debug/logger/monolog/**" />
     <Compile Remove="skins/Vector/vendor/composer/installers/**" />
