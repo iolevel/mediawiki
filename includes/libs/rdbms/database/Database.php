@@ -1020,7 +1020,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		# Add trace comment to the begin of the sql string, right after the operator.
 		# Or, for one-word queries (like "BEGIN" or COMMIT") add it to the end (T44598)
-		$commentedSql = preg_replace( '/\s|$/', " /* $fname {$this->agent} */ ", $sql, 1 );
+
+		// Peachpie: passing through preg_replace would turn it into a .NET string,
+		//           converting the binary data using the current encoding
+		$commentedSql = $sql; //preg_replace( '/\s|$/', " /* $fname {$this->agent} */ ", $sql, 1 );
 
 		# Start implicit transactions that wrap the request if DBO_TRX is enabled
 		if ( !$this->trxLevel && $this->getFlag( self::DBO_TRX )
