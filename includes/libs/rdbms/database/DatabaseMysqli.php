@@ -315,7 +315,9 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	protected function mysqlRealEscapeString( $s ) {
 		$conn = $this->getBindingHandle();
 
-		return $conn->real_escape_string( (string)$s );
+		// Peachpie: explicit conversion to string would turn it into a .NET string,
+		//           converting the binary data using the current encoding
+		return $conn->real_escape_string( /*(string)*/$s );
 	}
 
 	/**
